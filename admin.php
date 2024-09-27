@@ -6,8 +6,12 @@
     <title>Tableau de Bord Administrateur</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 <body>
+    <?php 
+        require_once('admin/auth/authentification.php');
+    ?>
     <div class="container-fluid">
         <div class="row">
             <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
@@ -16,7 +20,7 @@
                         <li class="nav-item mb-3">
                             <a class="nav-link text-white" href="#">
                                 <i class="fas fa-tachometer-alt"></i>
-                                Tableau de Bord
+                                Tableau de Bord 
                             </a>
                         </li>
                         <li class="nav-item mb-3">
@@ -61,14 +65,32 @@
                                 Utilisateurs
                             </a>
                         </li>
+                        <li class="nav-item mb-3">
+                            <?php if(est_connecter()): ?>
+                            <a href="admin/auth/deconnection.php" class="nav-link text-danger">
+                                <i class="fas fa-sign-out-alt"></i> Déconnexion
+                            </a>
+                            <?php endif; ?>
+                        </li>
                     </ul>
                 </div>
             </nav>
 
+            <!-- Contenu principal -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Tableau de Bord</h1>
+                    <div class="position-relative">
+                    <a href="notif.php" class="text-warning text-decoration-none">
+                        <i class="bi bi-bell fs-3 text-warning"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            3
+                            <span class="visually-hidden">Notifications non lues</span>
+                        </span>
+                    </a>
+                    </div>
                 </div>
+
                 <div class="row mb-4">
                     <div class="col-md-3">
                         <div class="card text-white bg-primary mb-3">
@@ -95,7 +117,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card text-white bg-danger mb-3">
+                        <div class="card text-white bg-dark mb-3"> <!-- Changement de couleur ici -->
                             <div class="card-body">
                                 <h5 class="card-title">Promotions</h5>
                                 <p class="card-text">Gérer les promotions.</p>
@@ -132,6 +154,7 @@
                                 die("Connexion échouée : " . $conn->connect_error);
                             }
 
+                            // Requête pour obtenir les utilisateurs
                             $sql = "SELECT * FROM user"; 
                             $result = $conn->query($sql);
 
@@ -158,6 +181,7 @@
             </main>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

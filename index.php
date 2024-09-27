@@ -19,7 +19,7 @@
         }
         require_once("admin/auth/authentification.php");
         if(est_connecter()){
-            header('Location: home.php');
+            header('Location: admin.php');
             exit();
         }
  ?>

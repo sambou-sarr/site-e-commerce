@@ -1,7 +1,7 @@
 <?php
 require_once('../layout/header.php');
 require_once("traitement_promo.php");
-require_once("../../connection.php");
+
 $sql="SELECT * FROM produit";
 $produits= $db->query($sql)->fetchAll();
 ?>
@@ -15,7 +15,7 @@ $produits= $db->query($sql)->fetchAll();
                         <form action="ajout_promo.php" method="POST">
                             <div class="mb-1">
                                 <label  class="form-label"><h5>taux de redecction</h5></label>
-                                <input type="text" class="form-control" name="qute">                
+                                <input type="text" class="form-control" name="taux">                
                             </div>
                             <div class="mb-1">
                                 <label for="email" class="form-label"><h5>date debut  </h5></label>
