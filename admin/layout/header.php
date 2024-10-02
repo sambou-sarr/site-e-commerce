@@ -1,4 +1,5 @@
-<?php require_once('../auth/authentification.php');
+<?php 
+require_once('../auth/authentification.php');
 if(!est_connecter()){
     header('location:../../index.php');
     exit();
@@ -41,6 +42,13 @@ $prenom = $_SESSION['prenom'];
             border: 2px solid #fff;
             padding: 10px;
         }
+        .sidebar .nav-link:hover {
+            background-color: #495057; /* Couleur des liens au survol */
+        }
+        .content {
+            padding: 20px; /* Espacement du contenu */
+        }
+    </style>
     </style>
 </head>
 <body>
@@ -49,12 +57,24 @@ $prenom = $_SESSION['prenom'];
             <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
                 <div class="sidebar-sticky pt-3">
                     <ul class="nav flex-column">
-                        <li class="nav-item mb-3">
-                            <a class="nav-link text-white" href="#">
-                                <i class="fas fa-tachometer-alt"></i>
-                                Tableau de Bord 
-                            </a>
-                        </li>
+                    <li class="nav-item mb-3">
+                    <div class="dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user" style="font-size: 2rem; margin-right: 10px;"></i> <!-- Icône de profil -->
+                        Mon compte 
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="profil.php">Mes informations</a></li>
+                                    <li><a class="dropdown-item" href="ges_compte.php">Gérer mon compte</a></li>
+                                    <li class="nav-item mb-3">
+                                        <?php if(est_connecter()): ?>
+                                        <a href="../auth/deconnection.php" class="nav-link text-danger">
+                                        <i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                                        <?php endif; ?>
+                                    </li>
+                                </ul>
+                    </div>
+                    </li>
                         <li class="nav-item mb-3">
                             <a class="nav-link text-white" href="../categorie/liste_categorie.php">
                                 <i class="fas fa-tags"></i>
@@ -98,30 +118,26 @@ $prenom = $_SESSION['prenom'];
                             </a>
                         </li>
                         <li class="nav-item mb-3">
-                        <?php if(est_connecter()): ?>
-                        <a href="../auth/deconnection.php" class="nav-link text-danger">
-                         <i class="fas fa-sign-out-alt"></i> Déconnexion</a>
-                         <?php endif; ?>
+                            <a class="nav-link text-white" href="../notification/liste_notification.php">
+                              <i class="fas fa-bell"></i> <!-- Icône de notification -->
+                               Notifications
+                           </a>
                         </li>
+
                     </ul>
                 </div>
             </nav>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content">
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                            <h1 class="h2">Tableau de Bord </h1>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                            <h1 class="h2">  <?php echo $prenom." ".$nom ?>  </h1>
-                        </div>
-                       
-                    </div>
+            <div class="row">
+    <div class="col-md-12">
+        <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Tableau de Bord</h1>
+            <h1 class="h2"><?php echo $prenom . " " . $nom; ?></h1>
+        </div>
+    </div>
+</div>
 
-                </div>
 
                 <div class="row mb-4">
                     <div class="col-md-3">
@@ -158,6 +174,4 @@ $prenom = $_SESSION['prenom'];
                     </div>
                 </div>
 <?php ?>
-
-    
-    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

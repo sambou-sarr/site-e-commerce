@@ -1,3 +1,7 @@
+<?php 
+session_start();
+$nom =  $_SESSION['nom'];
+$prenom = $_SESSION['prenom'];?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -72,10 +76,20 @@
 
             <!-- Contenu principal -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Tableau de Bord</h1>
-                </div>
+            <div class="row">
+                    <div class="col-md-10">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">Tableau de Bord </h1>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                            <h1 class="h2">  <?php echo $prenom." ".$nom ?>  </h1>
+                        </div>
+                       
+                    </div>
 
+                </div>
                 <!-- Statistiques sous forme de cartes -->
                 <div class="row mb-4">
                     <div class="col-md-3">

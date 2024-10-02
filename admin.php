@@ -1,3 +1,7 @@
+<?php 
+session_start();
+$nom =  $_SESSION['nom'];
+$prenom = $_SESSION['prenom'];?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,6 +11,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
     <?php 
@@ -18,10 +24,22 @@
                 <div class="sidebar-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item mb-3">
-                            <a class="nav-link text-white" href="#">
-                                <i class="fas fa-tachometer-alt"></i>
-                                Tableau de Bord 
-                            </a>
+                        <div class="dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user" style="font-size: 2rem; margin-right: 10px;"></i> <!-- Icône de profil -->
+                        Mon compte 
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="profil.php">Mes informations</a></li>
+                            <li><a class="dropdown-item" href="ges_compte.php">Gérer mon compte</a></li>
+                                    <li class="nav-item mb-3">
+                                        <?php if(est_connecter()): ?>
+                                        <a href="admin/auth/deconnection.php" class="nav-link text-danger">
+                                        <i class="fas fa-sign-out-alt"></i> Déconnexion</a>
+                                        <?php endif; ?>
+                                    </li>
+                                </ul>
+                                </div>
                         </li>
                         <li class="nav-item mb-3">
                             <a class="nav-link text-white" href="admin/categorie/liste_categorie.php">
@@ -66,30 +84,27 @@
                             </a>
                         </li>
                         <li class="nav-item mb-3">
-                            <?php if(est_connecter()): ?>
-                            <a href="admin/auth/deconnection.php" class="nav-link text-danger">
-                                <i class="fas fa-sign-out-alt"></i> Déconnexion
-                            </a>
-                            <?php endif; ?>
+                            <a class="nav-link text-white" href="../notification/liste_notification.php">
+                              <i class="fas fa-bell"></i> <!-- Icône de notification -->
+                               Notifications
+                           </a>
                         </li>
                     </ul>
                 </div>
             </nav>
 
             <!-- Contenu principal -->
+
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 main-content">
-                <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Tableau de Bord</h1>
-                    <div class="position-relative">
-                    <a href="notif.php" class="text-warning text-decoration-none">
-                        <i class="bi bi-bell fs-3 text-warning"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            3
-                            <span class="visually-hidden">Notifications non lues</span>
-                        </span>
-                    </a>
-                    </div>
-                </div>
+                
+            <div class="row">
+        <div class="col-md-12">
+             <div class="d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Tableau de Bord</h1>
+                <h1 class="h2"><?php echo $prenom . " " . $nom; ?></h1>
+             </div>
+        </div>
+</div>
 
                 <div class="row mb-4">
                     <div class="col-md-3">
@@ -126,62 +141,7 @@
                     </div>
                 </div>
 
-                <h2>Liste des Utilisateurs</h2>
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Prénom</th>
-                                <th>Email</th>
-                                <th>Téléphone</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            // Connexion à la base de données
-                            $servername = "127.0.0.1"; // Adresse du serveur
-                            $username = "root"; // Nom d'utilisateur MySQL
-                            $password = ""; // Mot de passe de l'utilisateur MySQL
-                            $dbname = "db_commerce"; // Nom de la base de données
+        
 
-                            // Création de la connexion
-                            $conn = new mysqli($servername, $username, $password, $dbname);
-
-                            // Vérifier la connexion
-                            if ($conn->connect_error) {
-                                die("Connexion échouée : " . $conn->connect_error);
-                            }
-
-                            // Requête pour obtenir les utilisateurs
-                            $sql = "SELECT * FROM user"; 
-                            $result = $conn->query($sql);
-
-                            if ($result->num_rows > 0) {
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr>
-                                            <td>" . $row["id_user"] . "</td>
-                                            <td>" . $row["nom_user"] . "</td>
-                                            <td>" . $row["prenom_user"] . "</td>
-                                            <td>" . $row["email_user"] . "</td>
-                                            <td>" . $row["tel_user"] . "</td>
-                                          </tr>";
-                                }
-                            } else {
-                                echo "<tr><td colspan='5' class='text-center'>Aucun utilisateur trouvé</td></tr>";
-                            }
-
-                            // Fermer connexion
-                            $conn->close();
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-            </main>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
