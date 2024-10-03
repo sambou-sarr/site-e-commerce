@@ -99,7 +99,7 @@
                 <div class="accordion-item">
                   <h2 class="accordion-header">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                     votre panier<span class="badge bg-primary rounded-pill">  <?php if(isset($_SESSION['tab']['id_produit'])){echo count($_SESSION['tab']['id_produit']); }else{ echo "0";}  ?></span>
+                     votre panier<span class="badge bg-primary rounded-pill">  <?php if(isset($_SESSION['tab']['id_produit'])){echo $t = count($_SESSION['tab']['id_produit']); }else{ echo "0";}  ?></span>
                     </button>
                   </h2>
                   <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -116,17 +116,19 @@
                               </tr>
                             </thead>
                             <tbody>
-                            <?php for ($i=0; $i <count($_SESSION['tab']['id_produit']) ; $i++) :?>
-                              <tr>                            
-                              <th scope="row"><?= $_SESSION['tab']['id_produit'][$i]?></th>
-                              <th scope="row"><?= $_SESSION['tab']['id_user'][$i]?></th>
-                                  <td><?= $_SESSION['tab']['libelle produit'][$i] ?></td>
-                                  <td><?= $_SESSION['tab']['prix_unitaire'][$i] ?></td>                          
-                                  <td><?= $_SESSION['tab']['quantite'][$i] ?> Kg</td>
-                                  <td><?= $_SESSION['tab']['prix'][$i] ?> F</td>
-                                   <td> <a href=""><img src="../produit/images/retirer-le-panier.png" style="width: 30px; height: 30px;"></a></td>
-                                </tr> 
-                            <?php endfor ?>
+                            <?php if(!empty($t)): ?>    
+                                <?php for ($i=0; $i <count($_SESSION['tab']['id_produit']) ; $i++) :?>
+                                <tr>                            
+                                <th scope="row"><?= $_SESSION['tab']['id_produit'][$i]?></th>
+                                <th scope="row"><?= $_SESSION['tab']['id_user'][$i]?></th>
+                                    <td><?= $_SESSION['tab']['libelle produit'][$i] ?></td>
+                                    <td><?= $_SESSION['tab']['prix_unitaire'][$i] ?></td>                          
+                                    <td><?= $_SESSION['tab']['quantite'][$i] ?> Kg</td>
+                                    <td><?= $_SESSION['tab']['prix'][$i] ?> F</td>
+                                    <td> <a href=""><img src="../produit/images/retirer-le-panier.png" style="width: 30px; height: 30px;"></a></td>
+                                    </tr> 
+                                <?php endfor ?>
+                            <?php endif?>
                             </tbody>
                           </table>     
                     </div>

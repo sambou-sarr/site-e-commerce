@@ -1,7 +1,5 @@
 <?php
-require_once("../layout/header.php");
 require_once("../../connection.php");
-
 $sql = "SELECT * FROM livreur";
 $livreurs = $db->query($sql)->fetchAll();
 
@@ -17,6 +15,7 @@ if (isset($_GET['id'])) {
         echo "Erreur lors de la suppression de l'enregistrement : " . $e->getMessage();
     }
 }
+require_once("../layout/header.php");
 ?>
 
 <!DOCTYPE html>

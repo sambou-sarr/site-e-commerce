@@ -4,8 +4,6 @@ if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['tel'])) 
         $nom = $_POST['nom'];
         $prenom =$_POST ['prenom'];
         $tel = $_POST['tel'];
-
-
         try {
             $sql= "INSERT INTO livreur (id_livreur ,nom_livreur ,prenom_livreur ,tel_livreur ) VALUES (null,? ,? ,? )";
             $prepare = $db->prepare($sql);
@@ -15,5 +13,3 @@ if (!empty($_POST['nom']) && !empty($_POST['prenom']) && !empty($_POST['tel'])) 
             echo "Erreur lors de l'ajout de l'enregistrement : " . $e->getMessage();
         }
 }
-
-?>
