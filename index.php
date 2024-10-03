@@ -9,15 +9,21 @@
                     session_start();
                     $_SESSION['connecter']= 1;
                     if($admin['statut_admin'] == 'admin'){
+                        $_SESSION['id'] = $admin['id_admin'];
                         $_SESSION['nom'] = $admin['nom_admin'];
                         $_SESSION['prenom'] = $admin['prenom_admin'];
                         $_SESSION['login'] = $admin['login_admin'];
+                        $_SESSION['image'] = $admin['image'];
+                        $_SESSION['email'] = $admin['email_admin'];
                         $_SESSION['status'] = $admin['statut_admin'];
                          header('Location: admin.php');
                     }elseif($admin['statut_admin'] == 'super'){
+                        $_SESSION['id'] = $admin['id_admin'];
                         $_SESSION['nom'] = $admin['nom_admin'];
                         $_SESSION['prenom'] = $admin['prenom_admin'];
                         $_SESSION['login'] = $admin['login_admin'];
+                        $_SESSION['image'] = $admin['image'];
+                        $_SESSION['email'] = $admin['email_admin'];
                         $_SESSION['status'] = $admin['statut_admin'];
                          header('Location: super_admin.php');
                     }

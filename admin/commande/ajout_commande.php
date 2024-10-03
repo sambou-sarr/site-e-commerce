@@ -77,7 +77,8 @@
                                 ajouter au panier
                             </i>
                         </button>
-                        
+                        <br>
+                        <br>
                         <button class="btn btn-light"  type="reset">Annuler</button>
                       
                     </div>

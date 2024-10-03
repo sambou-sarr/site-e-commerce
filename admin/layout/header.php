@@ -6,6 +6,9 @@ if(!est_connecter()){
 }
 $nom =  $_SESSION['nom'];
 $prenom = $_SESSION['prenom'];
+$email = $_SESSION['email'];
+$id = $_SESSION['id'];
+$image = $_SESSION['image'];
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -16,6 +19,47 @@ $prenom = $_SESSION['prenom'];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
+
+form {
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #218838;
+    }
+
+
+
         h1{
             text-align: center;
             top: 300px;
@@ -49,7 +93,6 @@ $prenom = $_SESSION['prenom'];
             padding: 20px; /* Espacement du contenu */
         }
     </style>
-    </style>
 </head>
 <body>
 <div class="container-fluid">
@@ -64,7 +107,9 @@ $prenom = $_SESSION['prenom'];
                         Mon compte 
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item" href="profil.php">Mes informations</a></li>
+                                    <li><a class="dropdown-item" href="#"><img src="../produit/images/<?=$image ?>" class="img-fluid rounded-circle w-25" alt=""></a></li>  
+                                    <li><?= $email?></li>
+                                    <li><a class="dropdown-item" href="../admin/profil.php?id=<?= $id?>">Mes informations</a></li>
                                     <li><a class="dropdown-item" href="ges_compte.php">Gérer mon compte</a></li>
                                     <li class="nav-item mb-3">
                                         <?php if(est_connecter()): ?>
