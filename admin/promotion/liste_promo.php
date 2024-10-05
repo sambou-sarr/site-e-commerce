@@ -1,27 +1,20 @@
 <?php
-require_once("../layout/header.php");
 require_once("../../connection.php");
-
-// Récupération des promotions
 $sql = "SELECT * FROM promotion";
 $promotions = $db->query($sql)->fetchAll();
-
-// Suppression d'une promotion si un ID est passé en paramètre
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $sql = "DELETE FROM promotion WHERE id_promo = ?";
-    
     try {
         $prepare = $db->prepare($sql);
         $prepare->execute([$id]);
-        header('Location: liste_promo.php'); // Redirection après suppression
-        exit(); // Sortir après redirection pour éviter l'exécution du reste du code
+        header('Location: liste_promo.php');
+        exit(); 
     } catch (PDOException $e) {
         echo "Erreur lors de la suppression de l'enregistrement : " . $e->getMessage();
     }
-}
+}require_once("../layout/header.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>

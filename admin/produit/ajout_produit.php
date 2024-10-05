@@ -1,6 +1,6 @@
 <?php
-require_once('../layout/header.php');
 require_once("traitement_produit.php");
+require_once('../layout/header.php');
 ?>
     <h1 class="display-3"> <i class="bi bi-plus-circle"> Ajout  produit </i></h1>
     <div class="row">

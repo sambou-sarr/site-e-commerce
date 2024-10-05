@@ -43,7 +43,6 @@ require_once('../layout/header.php');
                                 <label  class="form-label"><h5>Quantite e</h5></label>
                                 <input type="text" class="form-control" name="qute" value="<?= $detaille['quantite_produit']?>">                
                             </div>
-
                             <div class="mb-1">
                                 <button type="submit" class="btn btn-success">valider</button>
                             </div>            

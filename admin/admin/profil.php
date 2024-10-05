@@ -1,12 +1,10 @@
 <?php require_once("../../connection.php");
 require_once('../layout/header.php');
   $id = $_GET['id'];
-
   $sql = "SELECT * FROM admin WHERE id_admin = ?";
   $prepare = $db->prepare($sql);
   $prepare->execute([$id]);
   $admin = $prepare->fetch(PDO::FETCH_ASSOC);
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,16 +16,13 @@ require_once('../layout/header.php');
 </head>
 <body>
     <div class="container mt-5">
-        <!-- Carte de profil -->
         <div class="card mx-auto" style="max-width: 600px;">
             <div class="card-header text-center">
                 <h2>Mon Profil</h2>
             </div>
             <div class="card-body text-center">
-                <!-- Image de profil -->
                 <img src="../produit/images/tof.jpg" class="rounded-circle mb-3" alt="Photo de profil" style="width: 150px; height: 150px; object-fit: cover;">
                 
-                <!-- Informations de l'utilisateur -->
                 <form>
                     <div class="mb-3">
                         <label for="nom" class="form-label">Nom</label>

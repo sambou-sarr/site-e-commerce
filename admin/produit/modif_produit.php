@@ -1,6 +1,5 @@
 <?php
- require_once("../../connection.php");
-require_once('../layout/header.php');
+require_once("../../connection.php");
 $sql="SELECT * FROM categorie";
 $categories= $db->query($sql)->fetchAll();
 $id = $_GET['id'];
@@ -8,20 +7,18 @@ $sql = "SELECT * FROM produit WHERE id_prod = ?";
 $prepare = $db->prepare($sql);
 $prepare->execute([$id]);
 $produit = $prepare->fetch(PDO::FETCH_ASSOC);
-
 if (isset($_POST['libelle']) && isset($_POST['qute']) && isset($_POST['prix'])  && isset($_POST['img']) && isset($_POST['categorie']) ) {
     $libelle = $_POST['libelle'];
     $quantite = $_POST ['qute'];
     $image = $_POST['img'];
     $categorie = $_POST['categorie'];
     $prix = $_POST['prix'];  
-    $sql = "UPDATE user SET id_categorie = ? ,lib_prod  = ?,qte_en_stock = ?,prix_prod  = ?,img_prod = ? WHERE id_user = ?";
+    $sql = "UPDATE produit SET id_categorie = ? ,lib_prod  = ?,qte_en_stock = ?,prix_prod  = ?,img_prod = ? WHERE id_prod = ?";
     $stmt = $db->prepare($sql);
     $stmt->execute([$categorie, $libelle, $quantite, $prix,$image,$id]);
-    
     header("Location: liste_produit.php");
     exit();
-}
+}require_once('../layout/header.php');
 ?>
     <h1 class="display-3"> <i class="bi bi-plus-circle"> Ajout  produit </i></h1>
     <div class="row">
@@ -30,7 +27,7 @@ if (isset($_POST['libelle']) && isset($_POST['qute']) && isset($_POST['prix'])  
         <div class="col-md-4">
             <div class="form-group">
                 <div class="d1">
-                        <form action="ajout_produit.php" method="POST">
+                        <form action="" method="POST">
                             <div class="mb-1">
                                 <label  class="form-label"><h5 >libelle</h5></label>
                                 <input type="text" class="form-control" value="<?= $produit['lib_prod'] ?>" name="libelle" >

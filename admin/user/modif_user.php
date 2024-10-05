@@ -1,5 +1,4 @@
 <?php require_once("../../connection.php");
-require_once('../layout/header.php');
   $id = $_GET['id'];
 
   $sql = "SELECT * FROM user WHERE id_user = ?";
@@ -22,6 +21,7 @@ require_once('../layout/header.php');
       header("Location: liste_user.php");
       exit();
   }
+require_once('../layout/header.php');
 ?>
     <h1 class="display-3"> <i class="bi bi-plus-circle"> Ajout  commande </i></h1>
     <div class="row">

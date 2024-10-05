@@ -1,4 +1,4 @@
-<?php   require_once("../layout/header.php");
+<?php   
         require_once("../../connection.php");
         $sql="SELECT * FROM categorie";
         $categories= $db->query($sql)->fetchAll();
@@ -23,6 +23,7 @@
             } 
 
         }
+        require_once("../layout/header.php");
 ?>
 <!DOCTYPE html>
 <html lang="fr">
