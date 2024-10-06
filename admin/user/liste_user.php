@@ -87,8 +87,11 @@ if (isset($_GET['id'])) {
     </a>
 </div>
 
+<div>
+<input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Rechercher un user...">
+</div>
 <div class="table-responsive">
-    <table class="table table-hover table-striped table-bordered shadow-lg;">
+    <table id="myTable" class="table table-hover table-striped table-bordered shadow-lg;">
         <thead class="table-dark">
         <tr>
             <th scope="col">ID</th>
@@ -128,5 +131,30 @@ if (isset($_GET['id'])) {
 </div>
 
 <?php require_once("../layout/footer.php"); ?>
+
+<script>
+        function filterTable() {
+            var input = document.getElementById("searchInput");
+            var filter = input.value.toUpperCase();
+            var table = document.getElementById("myTable");
+            var tr = table.getElementsByTagName("tr");
+
+            for (var i = 1; i < tr.length; i++) {
+                var tdArray = tr[i].getElementsByTagName("td");
+                var isMatch = false;
+
+                for (var j = 0; j < tdArray.length; j++) {
+                    var td = tdArray[j];
+                    if (td) {
+                        if (td.textContent.toUpperCase().indexOf(filter) > -1) {
+                            isMatch = true;
+                            break;
+                        }
+                    }
+                }
+                tr[i].style.display = isMatch ? "" : "none";
+            }
+        }
+</script>
 </body>
 </html>

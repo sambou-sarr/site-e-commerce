@@ -108,9 +108,8 @@ form {
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <li><a class="dropdown-item" href="#"><img src="../produit/images/<?=$image ?>" class="img-fluid rounded-circle w-25" alt=""></a></li>  
-                                    <li><?= $email?></li>
-                                    <li><a class="dropdown-item" href="../admin/profil.php?id=<?= $id?>">Mes informations</a></li>
-                                    <li><a class="dropdown-item" href="ges_compte.php">Gérer mon compte</a></li>
+                                    <li class="dropdown-item "><strong><?= $email?></strong></li>
+                                    <li><a class="dropdown-item" href="../admin/profil.php?id=<?= $id?>">Gérer mon compte</a></li>
                                     <li class="nav-item mb-3">
                                         <?php if(est_connecter()): ?>
                                         <a href="../auth/deconnection.php" class="nav-link text-danger">
