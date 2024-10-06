@@ -38,7 +38,6 @@
             array_push($_SESSION['tab']['prix'], $prix);
         }
 ?>
-                <h2>Liste des commandes</h2>
                       
     <div class="row  top-100 ">
 

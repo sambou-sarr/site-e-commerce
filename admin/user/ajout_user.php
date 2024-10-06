@@ -1,5 +1,6 @@
-<?php require_once('../layout/header.php');
+<?php 
 require_once("traitement_user.php");
+require_once('../layout/header.php');
 ?>
     <h1 class="display-3"> <i class="bi bi-plus-circle"> Ajout  commande </i></h1>
     <div class="row">

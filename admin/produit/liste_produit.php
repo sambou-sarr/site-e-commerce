@@ -1,10 +1,7 @@
 <?php
-require_once("../layout/header.php");
 require_once("../../connection.php");
-
 $sql = "SELECT * FROM produit";
 $produits = $db->query($sql)->fetchAll();
-
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $sql = "DELETE FROM produit WHERE id_prod = ?";
@@ -16,7 +13,7 @@ if (isset($_GET['id'])) {
     } catch (PDOException $e) {
         echo "Erreur lors de la suppression de l'enregistrement : " . $e->getMessage();
     }
-}
+}require_once("../layout/header.php");
 ?>
 
 <!DOCTYPE html>

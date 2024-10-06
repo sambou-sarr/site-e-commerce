@@ -1,5 +1,5 @@
 <?php  
-    require_once("../layout/header.php");
+    
     require_once("../../connection.php");
 
     $id = $_GET['id'];
@@ -19,6 +19,7 @@
         header("Location: liste_categorie.php");
         exit();
     }
+    require_once("../layout/header.php");
 ?>
 
 <body>

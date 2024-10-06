@@ -1,9 +1,8 @@
 <?php
-require_once('../layout/header.php');
 require_once("traitement_promo.php");
-
 $sql="SELECT * FROM produit";
 $produits= $db->query($sql)->fetchAll();
+require_once('../layout/header.php');
 ?>
     <h1 class="display-3"> <i class="bi bi-plus-circle"> Ajout  promotion </i></h1>
     <div class="row">

@@ -1,5 +1,5 @@
 <?php require_once("../../connection.php");
-require_once('../layout/header.php');
+
 $sql="SELECT * FROM produit";
 $produits= $db->query($sql)->fetchAll();
 
@@ -20,10 +20,9 @@ $produits= $db->query($sql)->fetchAll();
     $prepare->execute([$produit]);
     $produit__ = $prepare->fetch(PDO::FETCH_ASSOC);
     $id1 = $produit__['id_prod'];
-    var_dump($produit__['prix_prod']);
-    var_dump( $prix1 =($taux / 100 ) * $produit__['prix_prod']) ;
+    $prix1 =($taux / 100 ) * $produit__['prix_initiale'];
 try {
-    $sql= "UPDATE promotion SET   (taux_promo = ? ,id_produit = ?,date_debut = ?,date_fin  = ? ) WHERE id_promo = ?";
+    $sql= "UPDATE promotion SET   taux_promo = ? ,id_produit = ?,date_debut = ?,date_fin  = ?  WHERE id_promo = ?";
     $prepare = $db->prepare($sql);
     $prepare->execute([ $taux,$produit, $date_debut, $date_fin ,$id]);
      $sql1 = "UPDATE produit SET prix_prod  = ? WHERE id_prod = ?";
@@ -33,6 +32,7 @@ try {
 } catch (PDOException $e) {
     echo "Erreur lors de l'ajout de l'enregistrement : " . $e->getMessage();
 }}
+require_once('../layout/header.php');
 ?>
     <h1 class="display-3"> <i class="bi bi-plus-circle"> Ajout  promotion </i></h1>
     <div class="row">
@@ -41,7 +41,7 @@ try {
         <div class="col-md-4">
             <div class="form-group">
                 <div class="d1">
-                        <form action="ajout_promo.php" method="POST">
+                        <form action="" method="POST">
                             <div class="mb-1">
                                 <label  class="form-label"><h5>taux de redecction</h5></label>
                                 <input type="text" class="form-control" value="<?= $promotion['taux_promo']?>" name="taux">                

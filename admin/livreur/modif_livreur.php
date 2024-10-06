@@ -1,7 +1,6 @@
 <?php 
 require_once("../../connection.php");
  $id = $_GET['id'];
-
  $sql = "SELECT * FROM livreur WHERE id_livreur = ?";
  $prepare = $db->prepare($sql);
  $prepare->execute([$id]);
@@ -25,7 +24,7 @@ require_once("../../connection.php");
         <div class="col-md-4">
             <div class="form-group">
                 <div class="d1">
-                        <form action="modif_livreur.php" method="POST">
+                        <form action="" method="POST">
                             <div class="mb-1">
                                 <label  class="form-label"><h5 >Prenom</h5></label>
                                 <input type="text" class="form-control" value="<?php echo $livreur['prenom_livreur']; ?> " name="prenom" >

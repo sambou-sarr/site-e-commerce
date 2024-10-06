@@ -1,23 +1,21 @@
 <?php
-require_once("../layout/header.php");
 require_once("../../connection.php");
-
 $sql = "SELECT * FROM user";
 $users = $db->query($sql)->fetchAll();
-
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $sql = "DELETE FROM user WHERE id_user = ?";
-    
     try {
         $prepare = $db->prepare($sql);
         $prepare->execute([$id]);
-        header('Location: liste_user.php'); // Redirection après suppression
-        exit(); // Sortir après la redirection pour éviter d'exécuter le reste du code
+        header('Location: liste_user.php'); 
+        exit(); 
     } catch (PDOException $e) {
         echo "Erreur lors de la suppression de l'enregistrement : " . $e->getMessage();
     }
 }
+require_once("../layout/header.php");
+
 ?>
 
 <!DOCTYPE html>
