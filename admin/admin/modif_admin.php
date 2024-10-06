@@ -1,5 +1,4 @@
 <?php require_once("../../connection.php");
-require_once('../layout/header.php');
   $id = $_GET['id'];
 
   $sql = "SELECT * FROM admin WHERE id_admin = ?";
@@ -20,8 +19,9 @@ require_once('../layout/header.php');
       $stmt->execute([$nom, $prenom, $email, $tel,$login, $password, $statut ,$id]);
       
       header("Location: liste_admin.php");
-      exit();
   }
+  require_once('../layout/header.php');
+
 ?>
     <h1 class="display-3"> <i class="bi bi-plus-circle"> Ajout  commande </i></h1>
     <div class="row">

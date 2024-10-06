@@ -1,5 +1,3 @@
-modifier_profil.php
-
 <?php
 // Connexion à la base de données
 require_once("../../connection.php");
@@ -97,4 +95,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
